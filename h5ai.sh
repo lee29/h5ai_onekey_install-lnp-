@@ -105,7 +105,7 @@ server {
     index index.html /_h5ai/public/index.php;        
     location ~ \.php$ {
         include snippets/fastcgi-php.conf;
-        fastcgi_pass unix:/run/php/php7.0-fpm.sock;
+        fastcgi_pass unix:/run/php/php7.2-fpm.sock;
     }
 }
 EOF
@@ -137,7 +137,7 @@ server
         ssl_session_cache builtin:1000 shared:SSL:10m;
         location ~ \.php$ {
             include snippets/fastcgi-php.conf;
-            fastcgi_pass unix:/run/php/php7.0-fpm.sock;
+            fastcgi_pass unix:/run/php/php7.2-fpm.sock;
         }
         location ~ .*\.(gif|jpg|jpeg|png|bmp|swf)$
         {
@@ -294,7 +294,7 @@ standard(){
 ssl(){
 
     systemctl stop nginx
-    systemctl stop php7.0-fpm
+    systemctl stop php7.2-fpm
 
     port_exist_check 80
     port_exist_check 443
@@ -304,7 +304,7 @@ ssl(){
     nginx_conf_ssl_add
 
     systemctl start nginx
-    systemctl start php7.0-fpm
+    systemctl start php7.2-fpm
 }
 main(){
     check_system
